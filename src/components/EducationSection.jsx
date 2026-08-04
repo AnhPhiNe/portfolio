@@ -7,21 +7,7 @@ import SpotlightCard from './SpotlightCard';
 const EducationSection = () => {
   const scrollRef = useRef(null);
 
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    const handleWheel = (e) => {
-      e.preventDefault();
-      el.scrollBy({
-        top: e.deltaY * 0.4, // Slow down scroll speed to 40%
-        behavior: 'smooth'
-      });
-    };
-
-    el.addEventListener('wheel', handleWheel, { passive: false });
-    return () => el.removeEventListener('wheel', handleWheel);
-  }, []);
+  // Removed custom scroll logic to restore native touchpad scrolling
 
   return (
     <section id="education" className="section-padding" style={{ position: 'relative' }}>
