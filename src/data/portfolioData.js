@@ -89,8 +89,8 @@ export const featuredProjects = [
     status: "Live in Production",
     techStack: ["Python", "FastAPI", "Qdrant", "MongoDB", "React/TypeScript", "Redis", "LangFuse"],
     description: "A cohort-aware Vietnamese RAG assistant for HCMUE students, combining hybrid retrieval (BM25 + vector search), graph-augmented context, and a custom evaluation framework to minimize hallucination on high-frequency student questions.",
-    github: "https://github.com",
-    demoLink: "https://demo.com",
+    github: "https://github.com/AnhPhiNe/student-handbook-rag-chatbot",
+    demoLink: "https://www.hcmuebot.id.vn",
   }
 ];
 

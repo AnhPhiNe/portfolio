@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Trophy, Star, Activity, Award } from 'lucide-react';
 import { academicTimeline, achievements } from '../data/portfolioData';
 import SpotlightCard from './SpotlightCard';
 
 const EducationSection = () => {
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const handleWheel = (e) => {
+      e.preventDefault();
+      el.scrollBy({
+        top: e.deltaY * 0.4, // Slow down scroll speed to 40%
+        behavior: 'smooth'
+      });
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    return () => el.removeEventListener('wheel', handleWheel);
+  }, []);
+
   return (
     <section id="education" className="section-padding" style={{ position: 'relative' }}>
       <div className="container">
@@ -154,8 +172,8 @@ const EducationSection = () => {
               <span style={{ fontSize: '1.6rem' }}>🏆</span> Honors & Awards
             </h3>
 
-            <div className="achievements-container">
-              <div className="achievements-grid">
+            <div className="achievements-container" data-lenis-prevent="true">
+              <div className="achievements-grid" ref={scrollRef}>
                 {achievements.map((item, idx) => (
                 <motion.div
                   key={idx}
