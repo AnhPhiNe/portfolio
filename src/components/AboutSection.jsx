@@ -271,13 +271,26 @@ const AboutSection = () => {
         @media (max-width: 992px) {
           .floating-grid {
             grid-template-columns: 1fr;
-            gap: 60px;
+            gap: 40px;
           }
           .floating-col-right {
             align-items: flex-start;
           }
           .cards-wrapper {
             width: 100%;
+          }
+          .floating-bio {
+            font-size: 1rem;
+            padding: 20px;
+          }
+          .floating-list-desc {
+            white-space: normal;
+          }
+          .floating-stats {
+            gap: 16px;
+          }
+          .stat-value {
+            font-size: 2rem;
           }
         }
       `}</style>

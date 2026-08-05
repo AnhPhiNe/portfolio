@@ -159,14 +159,27 @@ const EducationSection = () => {
             </h3>
 
             <div className="achievements-container" data-lenis-prevent="true">
-              <div className="achievements-grid" ref={scrollRef}>
+              <motion.div 
+                className="achievements-grid" 
+                ref={scrollRef}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.1 }
+                  }
+                }}
+              >
                 {achievements.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+                  }}
                   className="achievement-list-item"
                 >
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', width: '100%' }}>
@@ -193,8 +206,8 @@ const EducationSection = () => {
                   </div>
                 </motion.div>
               ))}
+              </motion.div>
             </div>
-          </div>
           </SpotlightCard>
         </div>
       </div>
@@ -289,7 +302,7 @@ const EducationSection = () => {
           padding: 16px 0;
           border-bottom: 1px solid rgba(255, 255, 255, 0.08);
           display: flex;
-          transition: all 0.3s ease;
+          transition: background-color 0.3s ease, padding 0.3s ease, border-radius 0.3s ease;
         }
         
         .achievement-list-item:last-child {
@@ -307,7 +320,7 @@ const EducationSection = () => {
         @media (max-width: 992px) {
           .edu-split-layout {
             grid-template-columns: 1fr;
-            gap: 60px;
+            gap: 40px;
           }
         }
 

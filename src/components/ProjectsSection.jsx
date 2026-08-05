@@ -249,12 +249,21 @@ const ProjectsSection = () => {
         @media (max-width: 992px) {
           .project-row {
             flex-direction: column !important;
-            gap: 32px !important;
+            gap: 24px !important;
           }
           
           .project-image-wrapper {
             flex: 0 0 auto !important;
             width: 100%;
+            border-radius: 12px !important;
+          }
+          
+          .project-info h3 {
+            font-size: 1.6rem !important;
+            margin-bottom: 12px !important;
+          }
+          .project-info p {
+            margin-bottom: 16px !important;
           }
         }
       `}</style>

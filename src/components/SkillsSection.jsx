@@ -104,10 +104,22 @@ const SkillsSection = () => {
           {skillGroups.map((group, gIdx) => (
             <motion.div
               key={group.label}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: gIdx * 0.06 }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-20px" }}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.4,
+                    delay: gIdx * 0.1,
+                    staggerChildren: 0.05,
+                    delayChildren: gIdx * 0.1 + 0.2
+                  }
+                }
+              }}
               className="skill-group"
             >
               {/* Left: Label */}
@@ -121,16 +133,21 @@ const SkillsSection = () => {
                   <motion.span
                     key={tag.name}
                     className="skill-tag"
-                    custom={tIdx}
-                    variants={tagVariants}
-                    initial="hidden"
-                    whileInView="visible"
+                    variants={{
+                      hidden: { opacity: 0, y: 10, scale: 0.95 },
+                      visible: { 
+                        opacity: 1, 
+                        y: 0, 
+                        scale: 1, 
+                        transition: { duration: 0.3, ease: 'easeOut' } 
+                      }
+                    }}
                     whileHover={{ 
-                      y: -6, 
+                      y: -4, 
+                      scale: 1.05,
                       zIndex: 10,
                       transition: { type: 'spring', stiffness: 400, damping: 14 } 
                     }}
-                    viewport={{ once: true }}
                     style={tag.color ? {
                       position: 'relative',
                       background: hexToRgba(tag.color, 0.12),
@@ -206,7 +223,7 @@ const SkillsSection = () => {
           border-radius: 6px;
           font-size: 0.88rem;
           font-family: var(--font-mono);
-          transition: all 0.2s ease;
+          transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
           cursor: default;
         }
 
@@ -214,7 +231,6 @@ const SkillsSection = () => {
           background: rgba(129, 140, 248, 0.15);
           border-color: rgba(129, 140, 248, 0.5);
           color: #fff;
-          transform: translateY(-2px);
           box-shadow: 0 4px 16px rgba(129, 140, 248, 0.2);
         }
 

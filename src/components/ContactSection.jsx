@@ -72,14 +72,27 @@ const ContactSection = () => {
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '44px', alignItems: 'start' }} className="contact-grid">
+        <motion.div 
+          className="contact-grid"
+          style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '44px', alignItems: 'start' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.2 }
+            }
+          }}
+        >
           
           {/* Left Info Column */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            variants={{
+              hidden: { opacity: 0, x: -30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+            }}
           >
             <div className="glow-badge" style={{ marginBottom: '20px' }}>
               <Sparkles size={16} /> BUILDING PRACTICAL AI SYSTEMS
@@ -160,10 +173,10 @@ const ContactSection = () => {
 
           {/* Right Form Column */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            variants={{
+              hidden: { opacity: 0, x: 30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.6 } }
+            }}
             className="glass-card glass-card-purple"
             style={{ padding: '36px' }}
           >
@@ -241,8 +254,7 @@ const ContactSection = () => {
               </form>
             )}
           </motion.div>
-
-        </div>
+        </motion.div>
       </div>
 
       <style>{`
@@ -270,7 +282,7 @@ const ContactSection = () => {
           color: #fff;
           outline: none;
           font-size: 0.95rem;
-          transition: all 0.3s ease;
+          transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
         }
         
         .contact-input:focus {
@@ -292,7 +304,7 @@ const ContactSection = () => {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          transition: all 0.3s ease;
+          transition: border-color 0.3s ease, background-color 0.3s ease;
         }
         
         .contact-info-box:hover {
@@ -312,7 +324,7 @@ const ContactSection = () => {
           font-size: 0.85rem;
           font-weight: 500;
           text-decoration: none;
-          transition: all 0.3s ease;
+          transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
           cursor: pointer;
         }
 
